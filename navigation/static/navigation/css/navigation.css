@@ -1,0 +1,5 @@
+/* navigation.css */
+.nav-center .crumbs, .crumbs { list-style:none; margin:0; padding:0; display:flex; gap:18px; align-items:center; justify-content:center; }
+.crumbs li { font-weight:600; color:#5b2033; padding:8px 12px; border-radius:8px; }
+.crumbs li a { color:inherit; text-decoration:none; }
+.crumbs li.disabled { color: rgba(91,32,51,0.35); cursor:not-allowed; background:transparent; }

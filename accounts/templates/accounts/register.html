@@ -1,0 +1,17 @@
+{% extends "core/base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+  <h1 style="color:#7a163a">Register</h1>
+  <form method="post" style="max-width:600px;margin:auto">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+      <div style="margin-bottom:8px">
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {{ field.errors }}
+      </div>
+    {% endfor %}
+    <button class="btn-primary" type="submit">Create Account</button>
+  </form>
+{% endblock %}

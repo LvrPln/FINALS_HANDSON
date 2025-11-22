@@ -1,0 +1,40 @@
+{% extends "core/base.html" %}
+{% block title %}Enrollment{% endblock %}
+
+{% block content %}
+  <h1 style="color:#7a163a">Enrollment</h1>
+  <p>Fill all sections (Course, Subject, Department, Student, Payment) to complete enrollment.</p>
+
+  <form method="post" style="max-width:920px;margin:auto">
+    {% csrf_token %}
+    <fieldset style="border:none;padding:0;margin:12px 0">
+      <legend style="font-weight:700;color:#7a163a">Course</legend>
+      {{ form.course_title.label_tag }}<br>{{ form.course_title }}<br>
+      {{ form.course_code.label_tag }}<br>{{ form.course_code }}
+    </fieldset>
+    <fieldset style="border:none;padding:0;margin:12px 0">
+      <legend style="font-weight:700;color:#7a163a">Subject</legend>
+      {{ form.subject_title.label_tag }}<br>{{ form.subject_title }}<br>
+      {{ form.subject_code.label_tag }}<br>{{ form.subject_code }}
+    </fieldset>
+    <fieldset style="border:none;padding:0;margin:12px 0">
+      <legend style="font-weight:700;color:#7a163a">Department</legend>
+      {{ form.department_name.label_tag }}<br>{{ form.department_name }}<br>
+      {{ form.department_head.label_tag }}<br>{{ form.department_head }}
+    </fieldset>
+    <fieldset style="border:none;padding:0;margin:12px 0">
+      <legend style="font-weight:700;color:#7a163a">Student</legend>
+      {{ form.student_number.label_tag }}<br>{{ form.student_number }}<br>
+      {{ form.student_contact.label_tag }}<br>{{ form.student_contact }}
+    </fieldset>
+    <fieldset style="border:none;padding:0;margin:12px 0">
+      <legend style="font-weight:700;color:#7a163a">Payment</legend>
+      {{ form.payment_amount.label_tag }}<br>{{ form.payment_amount }}<br>
+      {{ form.payment_ref.label_tag }}<br>{{ form.payment_ref }}
+    </fieldset>
+
+    <div style="margin-top:16px">
+      <button class="btn-primary" type="submit">Complete Enrollment</button>
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+  <h1 style="color:#7a163a">{{ title }}</h1>
+  <ul>
+    {% for i in items %}
+      <li>{{ i }}</li>
+    {% empty %}
+      <li>No items found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

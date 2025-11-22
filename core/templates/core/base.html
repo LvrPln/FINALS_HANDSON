@@ -1,0 +1,77 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>{% block title %}Student Portal{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'navigation/css/navigation.css' %}">
+  <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
+  <link rel="stylesheet" href="{% static 'enrollment/css/enrollment.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="theme-light">
+  <header class="site-header">
+    <nav class="nav-bar">
+      <div class="nav-left">
+        <a class="brand" href="{% url 'navigation:dashboard' %}">Student Portal</a>
+      </div>
+
+      <div class="nav-center">
+        <!-- crumbs: Enroll, Course, Subject, Departments, Students, Payments -->
+        <ul class="crumbs">
+          <li><a href="{% url 'enrollment:enroll' %}">Enroll</a></li>
+
+          {% if user.is_authenticated and user.profile.enrollment_completed %}
+            <li><a href="{% url 'enrollment:course' %}">Course</a></li>
+            <li><a href="{% url 'enrollment:subject' %}">Subject</a></li>
+            <li><a href="{% url 'enrollment:departments' %}">Departments</a></li>
+            <li><a href="{% url 'enrollment:student' %}">Students</a></li>
+            <li><a href="{% url 'enrollment:payments' %}">Payments</a></li>
+          {% else %}
+            <!-- disabled look until enrollment completed -->
+            <li class="disabled">Course</li>
+            <li class="disabled">Subject</li>
+            <li class="disabled">Departments</li>
+            <li class="disabled">Students</li>
+            <li class="disabled">Payments</li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <div class="nav-right">
+        {% if user.is_authenticated %}
+          <a href="{% url 'accounts:logout' %}" class="btn-ghost">Logout</a>
+        {% else %}
+          <a href="{% url 'accounts:login' %}" class="btn-ghost">Login</a>
+          <a href="{% url 'accounts:register' %}" class="btn-primary">Register</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <section class="page-card">
+      {% block content %}{% endblock %}
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    &copy; {{ now|date:"Y" }} Student Portal
+  </footer>
+
+  <!-- small theme toggle script (allowed) -->
+  <script>
+    (function(){
+      const btn=document.getElementById('theme-toggle');
+      if(!btn) return;
+      btn.addEventListener('click',()=>{
+        document.body.classList.toggle('theme-dark');
+        document.body.classList.toggle('theme-light');
+      });
+    })();
+  </script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends "core/base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<h1 style="color:#7a163a">Profile</h1>
+<p>Username: {{ user.username }}</p>
+<p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+<p>Email: {{ user.email }}</p>
+<p>Enrollment completed: {{ user.profile.enrollment_completed }}</p>
+<a href="{% url 'enrollment:dashboard' %}">Go to enrollment dashboard</a>
+{% endblock %}

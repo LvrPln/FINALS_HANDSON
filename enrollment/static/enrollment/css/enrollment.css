@@ -1,0 +1,10 @@
+/* enrollment.css: basic rounded inputs */
+form input, form select, form textarea {
+  width:100%;
+  padding:10px 12px;
+  margin:6px 0 12px;
+  border-radius:8px;
+  border:1px solid #e6e6e6;
+  outline:none;
+}
+form legend { font-size:14px; margin-bottom:6px; }
